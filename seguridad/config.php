@@ -3,5 +3,5 @@
     define("USUARIO", "root");
     define("PASSWORD", "root");
     define("BASEDATOS", "biblioteca");
-    define("PUERTO", "3306");
+    define("PUERTO", "");
 ?>
