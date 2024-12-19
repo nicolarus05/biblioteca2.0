@@ -1,9 +1,9 @@
 # Biblioteca 2.0
 
 ## Miembros del Proyecto
-+ Nicolás García Hernández
-+ Alonso Sánchez Jerez
-+ Salvador Ortega Murcia
++ Nicolás García Hernández (Autores)
++ Alonso Sánchez Jerez (Usuarios)
++ Salvador Ortega Murcia (Libros)
 
 
 ## Estructura de Ficheros de la Aplicación
