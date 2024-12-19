@@ -18,6 +18,8 @@
     + vistaLibros.php
     + vistaUsuarios.php
     + vistaLogin.php
+    + miPerfil.php
+    + vistaGeneral.php
     + header.php
     + footer.php
 + seguridad/
@@ -26,6 +28,13 @@
     + config.sample.php
     + seguridad.php
     + conexion.php
+    + cerrarSesion.php
 + index.php
 
-##La base de datos se hará en PDO
+
+## Tareas
+    + Alonso: Usuarios
+    + Salva: Libros
+    + Nicolas: Autores
+    
+##Las base de datos se hará en PDO
