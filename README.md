@@ -27,3 +27,5 @@
     + seguridad.php
     + conexion.php
 + index.php
+
+##La base de datos se hará en PDO
