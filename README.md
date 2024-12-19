@@ -31,10 +31,4 @@
     + cerrarSesion.php
 + index.php
 
-
-## Tareas
-    + Alonso: Usuarios
-    + Salva: Libros
-    + Nicolas: Autores
-    
 ##Las base de datos se hará en PDO
