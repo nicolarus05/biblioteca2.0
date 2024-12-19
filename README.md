@@ -2,7 +2,7 @@
 
 ## Miembros del Proyecto
 + Nicolás García Hernández (Autores)
-+ Alonso Sánchez Jerez (Usuarios, Modelo)
++ Alonso Sánchez Jerez (Usuarios, Modelo  genérico)
 + Salvador Ortega Murcia (Libros, Vista)
 
 
@@ -31,4 +31,4 @@
     + cerrarSesion.php
 + index.php
 
-##Las base de datos se hará en PDO
+## La base de datos se hará en PDO
