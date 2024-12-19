@@ -2,8 +2,8 @@
 
 ## Miembros del Proyecto
 + Nicolás García Hernández (Autores)
-+ Alonso Sánchez Jerez (Usuarios)
-+ Salvador Ortega Murcia (Libros)
++ Alonso Sánchez Jerez (Usuarios, Modelo)
++ Salvador Ortega Murcia (Libros, Vista)
 
 
 ## Estructura de Ficheros de la Aplicación
