@@ -6,7 +6,7 @@ class Modelo
     protected $tabla;
 
     //capa de abstracción de datos
-    private $bd;
+    protected $bd;
 
     //constructor
     public function __construct($nombreTabla)

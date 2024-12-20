@@ -2,22 +2,12 @@
 class Usuario extends Modelo
 {
 
-    //atributos de la clase
-    private $bd;
-    private $tabla = 'usuarios';
+    //los atributos se heredan de la clase modelo
 
     //constructor
     public function __construct($nombreTabla)
     {
         parent::__construct($nombreTabla);
-    }
-
-    //obtener todos los usuarios
-    public function obtenerTodos()
-    {
-        $consulta = 'SELECT * FROM ' . $this->tabla;
-        $stmt = $this->bd->query($consulta);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     //función para crear los usuarios
