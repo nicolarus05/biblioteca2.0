@@ -30,4 +30,23 @@ class Modelo
         $lista = $consulta->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
+
+    //función para obtener algo concreto de una tabla
+    public function obtenerConcreto($columna, $valor)
+    {
+        $consulta = 'SELECT * FROM ' . $this->tabla . ' WHERE ' . $columna . ' = :valor';
+        $stmt = $this->bd->prepare($consulta);
+        $stmt->bindParam(':valor', $valor);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //función para eliminar algo de una tabla
+    public function eliminar($columna, $valor)
+    {
+        $consulta = 'DELETE FROM ' . $this->tabla . ' WHERE ' . $columna . ' = :valor';
+        $stmt = $this->bd->prepare($consulta);
+        $stmt->bindParam(':valor', $valor);
+        $stmt->execute();
+    }
 }

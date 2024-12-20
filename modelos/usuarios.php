@@ -1,5 +1,5 @@
 <?php
-class Usuario
+class Usuario extends Modelo
 {
 
     //atributos de la clase
@@ -7,9 +7,9 @@ class Usuario
     private $tabla = 'usuarios';
 
     //constructor
-    public function __construct()
+    public function __construct($nombreTabla)
     {
-        $this->bd = new PDO('mysql:host=host;dbname=base-datos', 'usuario', 'clave');
+        parent::__construct($nombreTabla);
     }
 
     //obtener todos los usuarios
@@ -45,15 +45,6 @@ class Usuario
         $stmt->bindParam(':apellidos', $datos['apellidos']);
         $stmt->bindParam(':avatar', $datos['avatar']);
         $stmt->bindParam(':clave', $datos['clave']);
-        $stmt->bindParam(':login', $login);
-        $stmt->execute();
-    }
-
-    //función para eliminar usuarios
-    public function eliminar($login)
-    {
-        $consulta = 'DELETE FROM ' . $this->tabla . ' WHERE login = :login';
-        $stmt = $this->bd->prepare($consulta);
         $stmt->bindParam(':login', $login);
         $stmt->execute();
     }
