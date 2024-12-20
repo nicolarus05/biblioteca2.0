@@ -17,7 +17,15 @@
                 echo "<td>$libro[autor]</td>"; //Mostrar el nombre del autor y su apellido + adelante.
                 echo "<td>$libro[nPaginas]</td>";
                 echo "<td>$libro[nEjemplares]</td>";
+
+                //Falta cambiar llamada a editar y borrar.
+                if(isset($_SESSION['logged']) && $_SESSION['logged']!="registrado"){
+                    echo "<td><a href='actualizarLibro.php?id=".$libro['id']."'>Actualizar</a></td>";
+                    echo "<td><a href='borrarLibro.php?id=".$libro['id']."'>Borrar</a></td>";
+                }
             echo "</tr>";
+            
+            
         }
     ?>
 </table>
