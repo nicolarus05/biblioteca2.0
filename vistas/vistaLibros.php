@@ -11,7 +11,7 @@
     <?php 
         $libros = $datos['libros'];
         foreach($libros as $libro) {
-            echo "<tr>;"
+            echo "<tr>";
                 echo "<td>$libro[titulo]</td>";
                 echo "<td>$libro[genero]</td>";
                 echo "<td>$libro[autor]</td>"; //Mostrar el nombre del autor y su apellido + adelante.
