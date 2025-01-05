@@ -42,12 +42,9 @@ class Autores extends Modelo {
     }
 
     //metodo para eliminar un autor
-    public function eliminar($id, $cascade = false) {
-        $sql = "delete FROM $this->tabla WHERE id = :id";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    public function eliminar($columna, $valor = false) {
         try {
-            $stmt->execute();
+            parent::eliminar($columna, $valor);
         } catch (PDOException $e) {
             echo "Error al eliminar el autor: " . $e->getMessage();
         }
