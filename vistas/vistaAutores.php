@@ -3,14 +3,10 @@
 <h1>Listado de Autores</h1>
 
 <table>
-
     <tr>
         <th>Nombre</th>
-
         <th>Apellido</th>
-
         <th>Nacionalidad</th>
-
         <th>Fecha de Nacimiento</th>
     </tr>
 
