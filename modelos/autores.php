@@ -5,18 +5,15 @@ require_once "modelo.php";
 
 class Autores extends Modelo {
 
-    //atributos de la clase
-    private $conexion;
-
-    //constructor de la clase
+    // Constructor de la clase
     public function __construct() {
         parent::__construct('autores');
     }
 
-    //metodo para insertar un autor
+    // Método para insertar un autor
     public function insertar($nombre, $nacionalidad) {
         $sql = "insert INTO $this->tabla (nombre, nacionalidad) VALUES (:nombre, :nacionalidad)";
-        $stmt = $this->conexion->prepare($sql);
+        $stmt = $this->bd->prepare($sql);
         $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
         try {
@@ -24,13 +21,13 @@ class Autores extends Modelo {
         } catch (PDOException $e) {
             echo "Error al insertar el autor: " . $e->getMessage();
         }
-        return $this->conexion->lastInsertId();
+        return $this->bd->lastInsertId();
     }
 
-    //metodo para actualizar un autor
+    // Método para actualizar un autor
     public function actualizar($id, $nombre, $nacionalidad) {
         $sql = "update $this->tabla SET nombre = :nombre, nacionalidad = :nacionalidad WHERE id = :id";
-        $stmt = $this->conexion->prepare($sql);
+        $stmt = $this->bd->prepare($sql);
         $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -41,8 +38,8 @@ class Autores extends Modelo {
         }
     }
 
-    //metodo para eliminar un autor
-    public function eliminar($columna, $valor = false) {
+    // Método para eliminar un autor
+    public function eliminar($columna, $valor) {
         try {
             parent::eliminar($columna, $valor);
         } catch (PDOException $e) {
@@ -50,5 +47,4 @@ class Autores extends Modelo {
         }
     }
 }
-
 ?>
