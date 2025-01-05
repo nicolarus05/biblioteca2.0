@@ -15,7 +15,7 @@ class Autores extends Modelo {
 
     //metodo para insertar un autor
     public function insertar($nombre, $nacionalidad) {
-        $sql = "INSERT INTO $this->tabla (nombre, nacionalidad) VALUES (:nombre, :nacionalidad)";
+        $sql = "insert INTO $this->tabla (nombre, nacionalidad) VALUES (:nombre, :nacionalidad)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
@@ -29,7 +29,7 @@ class Autores extends Modelo {
 
     //metodo para actualizar un autor
     public function actualizar($id, $nombre, $nacionalidad) {
-        $sql = "UPDATE $this->tabla SET nombre = :nombre, nacionalidad = :nacionalidad WHERE id = :id";
+        $sql = "update $this->tabla SET nombre = :nombre, nacionalidad = :nacionalidad WHERE id = :id";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
@@ -43,7 +43,7 @@ class Autores extends Modelo {
 
     //metodo para eliminar un autor
     public function eliminar($id, $cascade = false) {
-        $sql = "DELETE FROM $this->tabla WHERE id = :id";
+        $sql = "delete FROM $this->tabla WHERE id = :id";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         try {
