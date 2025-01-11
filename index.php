@@ -76,6 +76,14 @@ switch ($accion) {
             Vista::mostrar('vistaActualizar',$datos);
         }
         break;
+    case 'borrarLibro':
+        //qué hacer para borrar libros
+        if(Seguridad::secureRol(['bibliotecario'])){
+            $libros = new Libro('libros');
+            $libros->eliminar('id',$id);
+            header("Location:./?vista=vistaLibros");
+        }
+        break;
     default:
         if($segura->isLogged()){
             $datos = $segura->getRol(); 

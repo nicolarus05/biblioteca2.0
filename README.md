@@ -23,7 +23,6 @@
     + header.php
     + footer.php
     + vistaInsertar.php
-    + vistaBorrar.php
     + vistaActualizar.php
 + seguridad/
     + install.php
