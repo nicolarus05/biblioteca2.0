@@ -25,6 +25,13 @@ if(isset($_POST['login'])){
     }
 }
 
+//Recibir formulario de insercion de autores
+if(isset($_POST['iAutor'])){
+    $autores = new Autor('autores');
+    $autores->insertar($_POST['nombre'],$_POST['apellidos'],$_POST['nacionalidad']);
+    header("Location:./?vista=vistaAutores");
+}
+
 if(isset($_GET['vista'])){
     $vista = $_GET['vista'];
 }
@@ -37,6 +44,21 @@ switch ($accion) {
     case 'usuarios':
         //qué hacer para mostrar los usuarios
         break;
+    case 'vistaLibros':
+        //qué hacer para mostrar los libros
+        $libros = new Libro('libros');
+        Vista::mostrar('vistaLibros',$libros->listar());
+        break;
+    case 'insertarLibro':
+        //qué hacer para insertar libros
+        if(Seguridad::secureRol(['bibliotecario'])){
+            $datos[0] = 'libro';
+            $autores = new Autor('autores');
+            array_push($datos,$autores->listar());
+            Vista::mostrar('vistaInsertar',$datos);
+        }
+        break;
+    
     default:
         if($segura->isLogged()){
             $datos = $segura->getRol(); 
