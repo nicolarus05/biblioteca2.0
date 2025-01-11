@@ -34,4 +34,15 @@
     + cerrarSesion.php
 + index.php
 
-## La base de datos se hará en PDO
+## Instrucciones de uso.
+1. Requisitos mínimos: LAMP. Recomendable: php-myadmin
+2. Descargar la aplicación y descomprimir en la ruta de nuestro servidor web.
+3. Dar permisos de lectura y escritura a nuestro servidor web.
+4. Dar permisos de ejecución al archivo install.php
+5. Desde el navegador acceder a nuestro servidor web, a la ruta de la aplicación.
+6. Seguir la instalación. Se pedirá la siguiente información: 
+    + IP del SGBD.
+    + Nombre de la base de datos.
+    + Login del usuario con privilegios sobre esa base de datos.
+    + Contraseña del usuario.
+    + Puerto.
