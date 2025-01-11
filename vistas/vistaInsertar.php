@@ -32,5 +32,18 @@
                     <input type="submit" name="iLibro" value="Insertar">
                 </form>
             </fieldset>
-        <?php }?>
+        <?php } elseif ($tabla == 'autor'){?>
+            <fieldset>
+            <legend>Insertar Autor</legend>
+                <form action="" method="post">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="apellidos">
+                    <label for="nacionalidad">Nacionalidad</label>
+                    <input type="text" name="nacionalidad" id="nacionalidad">
+                    <input type="submit" name="iAutor" value="Insertar">
+                </form>
+            </fieldset>
+        <?php } ?>
 </main>
