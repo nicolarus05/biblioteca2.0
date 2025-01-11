@@ -12,14 +12,10 @@ class Modelo
     public function __construct($nombreTabla)
     {
         $this->tabla = $nombreTabla;
-        $datosConexion = 'mysql:host=host;dbname=base-datos;charset=utf8';
-        $usuario = 'root';
-        $clave = 'root';
-        try {
-            $this->conexion = new PDO($datosConexion, $usuario, $clave);
-            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo 'Coexión fallida: ' . $e->getMessage();
+        try{
+            $this->conexion = Conexion::getConn();
+        }catch(PDOException $e){
+            echo "Conexion fallida" . $e->getMessage();
         }
     }
 
