@@ -32,6 +32,13 @@ if(isset($_POST['iAutor'])){
     header("Location:./?vista=vistaAutores");
 }
 
+//Recibir formulario de actualizacion de libros
+if(isset($_POST['aLibro'])){
+    $libros = new Libro('libros');
+    $libros->actualizar($_POST['id'],$_POST['titulo'],$_POST['genero'],$_POST['autor'],$_POST['numeroPaginas'],$_POST['numeroEjemplares']);
+    header("Location:./?vista=vistaLibros");
+}
+
 if(isset($_GET['vista'])){
     $vista = $_GET['vista'];
 }
@@ -58,7 +65,17 @@ switch ($accion) {
             Vista::mostrar('vistaInsertar',$datos);
         }
         break;
-    
+    case 'actualizarLibro':
+        //qué hacer para actualizar libros
+        if(Seguridad::secureRol(['bibliotecario'])){
+            $libros = new Libro('libros');
+            $autores = new Autor('autores');
+            $datos[0] = 'libro';
+            array_push($datos,$libros->get('id',$id));
+            array_push($datos,$autores->listar());
+            Vista::mostrar('vistaActualizar',$datos);
+        }
+        break;
     default:
         if($segura->isLogged()){
             $datos = $segura->getRol(); 
