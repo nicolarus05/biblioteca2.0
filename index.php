@@ -47,7 +47,7 @@ if(!isset($vista)){
     $vista = null;
 }
 
-switch ($accion) {
+switch ($vista) {
     case 'usuarios':
         //qué hacer para mostrar los usuarios
         break;

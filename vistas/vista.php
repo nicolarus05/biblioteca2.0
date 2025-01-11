@@ -9,9 +9,9 @@
          * @param array $datos Datos que se le pasan a la vista. Default: null.
          */
         public static function mostrar($nombreVista, $datos=null) {
-            include("header.php");
+            include("cabecera.php");
             include("$nombreVista.php");
-            include("footer.php");
+            include("pie.php");
         }
     }
 ?>
