@@ -6,7 +6,7 @@ class Modelo
     protected $tabla;
 
     //capa de abstracción de datos
-    protected $bd;
+    protected $conexion;
 
     //constructor
     public function __construct($nombreTabla)
@@ -16,8 +16,8 @@ class Modelo
         $usuario = 'root';
         $clave = 'root';
         try {
-            $this->bd = new PDO($datosConexion, $usuario, $clave);
-            $this->bd->setAttribute(PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
+            $this->conexion = new PDO($datosConexion, $usuario, $clave);
+            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo 'Coexión fallida: ' . $e->getMessage();
         }
@@ -26,7 +26,7 @@ class Modelo
     //función de obtener todo de una tabla
     public function obtenerTodo()
     {
-        $consulta = $this->bd->query('SELECT * FROM ' . $this->tabla);
+        $consulta = $this->conexion->query('SELECT * FROM ' . $this->tabla);
         $lista = $consulta->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
@@ -35,7 +35,7 @@ class Modelo
     public function obtenerConcreto($columna, $valor)
     {
         $consulta = 'SELECT * FROM ' . $this->tabla . ' WHERE ' . $columna . ' = :valor';
-        $stmt = $this->bd->prepare($consulta);
+        $stmt = $this->conexion->prepare($consulta);
         $stmt->bindParam(':valor', $valor);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -45,7 +45,7 @@ class Modelo
     public function eliminar($columna, $valor)
     {
         $consulta = 'DELETE FROM ' . $this->tabla . ' WHERE ' . $columna . ' = :valor';
-        $stmt = $this->bd->prepare($consulta);
+        $stmt = $this->conexion->prepare($consulta);
         $stmt->bindParam(':valor', $valor);
         $stmt->execute();
     }

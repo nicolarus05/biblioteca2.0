@@ -1,9 +1,7 @@
 <?php
-// Archivo: modelos/autores.php
 
-require_once "modelo.php";
-
-class Autores extends Modelo {
+require_once 'modelo.php';
+class Autor extends Modelo {
 
     // Constructor de la clase
     public function __construct() {
@@ -11,39 +9,31 @@ class Autores extends Modelo {
     }
 
     // Método para insertar un autor
-    public function insertar($nombre, $nacionalidad) {
-        $sql = "insert INTO $this->tabla (nombre, nacionalidad) VALUES (:nombre, :nacionalidad)";
-        $stmt = $this->bd->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+    public function insertar($nombre, $apellidos ,$nacionalidad) {
+        $sql = "insert INTO $this->tabla (Nombre, Apellidos , Pais) VALUES (:nombre, :apellidos, :nacionalidad)";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':Apellidos', $apellidos, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
         try {
             $stmt->execute();
         } catch (PDOException $e) {
             echo "Error al insertar el autor: " . $e->getMessage();
         }
-        return $this->bd->lastInsertId();
+        return $this->conexion->lastInsertId();
     }
 
     // Método para actualizar un autor
-    public function actualizar($id, $nombre, $nacionalidad) {
+    public function actualizar($apellidos, $nombre, $nacionalidad) {
         $sql = "update $this->tabla SET nombre = :nombre, nacionalidad = :nacionalidad WHERE id = :id";
-        $stmt = $this->bd->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':Apellidos', $apellidos, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         try {
             $stmt->execute();
         } catch (PDOException $e) {
             echo "Error al actualizar el autor: " . $e->getMessage();
-        }
-    }
-
-    // Método para eliminar un autor
-    public function eliminar($columna, $valor) {
-        try {
-            parent::eliminar($columna, $valor);
-        } catch (PDOException $e) {
-            echo "Error al eliminar el autor: " . $e->getMessage();
         }
     }
 }
