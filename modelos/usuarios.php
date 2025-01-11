@@ -1,4 +1,5 @@
 <?php
+require_once 'modelo.php';
 class Usuario extends Modelo
 {
 
@@ -14,7 +15,7 @@ class Usuario extends Modelo
     public function crear($datos)
     {
         $consulta = 'INSERT INTO ' . $this->tabla . ' (login, nombre, apellidos, avatar, salt, clave, rol) VALUES (:login, :nombre, :apellidos, :avatar, :salt, :clave, :rol)';
-        $stmt = $this->bd->prepare($consulta);
+        $stmt = $this->conexion->prepare($consulta);
         $stmt->bindParam(':login', $datos['login']);
         $stmt->bindParam(':nombre', $datos['nombre']);
         $stmt->bindParam(':apellidos', $datos['apellidos']);
@@ -29,7 +30,7 @@ class Usuario extends Modelo
     public function actualizar($login, $datos)
     {
         $consulta = 'UPDATE ' . $this->tabla . ' SET login = :login, nombre = :nombre, apellidos = :apellidos, avatar = :avatar, clave = :clave WHERE login = :login';
-        $stmt = $this->bd->prepare($consulta);
+        $stmt = $this->conexion->prepare($consulta);
         $stmt->bindParam(':login', $datos['login']);
         $stmt->bindParam(':nombre', $datos['nombre']);
         $stmt->bindParam(':apellidos', $datos['apellidos']);

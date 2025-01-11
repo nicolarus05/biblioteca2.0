@@ -1,5 +1,7 @@
 <?php
+session_start();
 require_once "config.php";
+require_once "conexion.php";
 
 class seguridad {
     private $session;
@@ -8,11 +10,10 @@ class seguridad {
     private $rol;
 
     public function __construct($conexion) {
-        $this->conexion = $conexion;
+        $this->conexion = $conexion->getConn();
         $this->session = false;
         $this->user = "";
         $this->rol = "";
-        session_start();
 
         // Comprobamos si hay una sesión activa
         if (isset($_SESSION['user'])) {
@@ -66,17 +67,12 @@ class seguridad {
         return $this->rol;
     }
 
-    public function secureRol($rol = NULL) {
-        if ($rol == NULL) {
-            return $this->isLogged();
-        }
-        
-        if (!is_array($rol)) {
-            $rol = [$rol];
-        }
+    public static function secureRol($rol) {
 
         if (!in_array($_SESSION['rol'], $rol)) {
-            header("Location: ../index.php");
+            return false;
+        }else{
+            return true;
         }
     }
 }

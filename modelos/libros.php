@@ -1,5 +1,6 @@
 <?php
-    class Libros extends Modelo {
+require_once 'modelo.php';
+    class Libro extends Modelo {
         
         /**
          * Constructor

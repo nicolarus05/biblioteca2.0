@@ -113,7 +113,7 @@ if (isset($_POST['crear']) && $mostrarLogin && isset($_SESSION['instalacion'])) 
     SQL;
 
     if ($conexion->query($sqlInsert)) {
-        header("Location: ./index.php");
+        header("Location: ../index.php");
         echo "Usuario administrador creado correctamente.";
         
     } else {

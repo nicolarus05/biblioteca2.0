@@ -24,7 +24,7 @@ class Modelo
     }
 
     //función de obtener todo de una tabla
-    public function obtenerTodo()
+    public function listar()
     {
         $consulta = $this->conexion->query('SELECT * FROM ' . $this->tabla);
         $lista = $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -32,7 +32,7 @@ class Modelo
     }
 
     //función para obtener algo concreto de una tabla
-    public function obtenerConcreto($columna, $valor)
+    public function get($columna, $valor)
     {
         $consulta = 'SELECT * FROM ' . $this->tabla . ' WHERE ' . $columna . ' = :valor';
         $stmt = $this->conexion->prepare($consulta);
