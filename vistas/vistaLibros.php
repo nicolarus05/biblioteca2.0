@@ -9,20 +9,19 @@
         <th>Número de ejemplares</th>
     </tr>
     <?php 
-        $libros = $datos['libros'];
+        $libros = $datos;
         foreach($libros as $libro) {
             echo "<tr>";
                 echo "<td>$libro[titulo]</td>";
                 echo "<td>$libro[genero]</td>";
-                echo "<td>$libro[autor]</td>"; //Mostrar el nombre del autor y su apellido + adelante.
-                echo "<td>$libro[nPaginas]</td>";
-                echo "<td>$libro[nEjemplares]</td>";
+                echo "<td>$libro[idAutor]</td>";
+                echo "<td>$libro[numeroPaginas]</td>";
+                echo "<td>$libro[numeroEjemplares]</td>";
 
-                //Falta cambiar llamada a editar y borrar.
-                if(isset($_SESSION['logged']) && $_SESSION['logged']!="registrado"){
-                    echo "<td><a href='actualizarLibro.php?id=".$libro['id']."'>Actualizar</a></td>";
-                    echo "<td><a href='borrarLibro.php?id=".$libro['id']."'>Borrar</a></td>";
-                }
+                if(Seguridad::secureRol(['bibliotecario'])){
+                    echo "<td><a href='?vista=vistaActualizar&id=".$libro['id']."'>Actualizar</a></td>";
+                    echo "<td><a href='?vista=vistaBorrar&id=".$libro['id']."'>Borrar</a></td>";
+                } 
             echo "</tr>";
             
             

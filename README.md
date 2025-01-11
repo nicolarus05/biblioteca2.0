@@ -22,6 +22,9 @@
     + vistaGeneral.php
     + header.php
     + footer.php
+    + vistaInsertar.php
+    + vistaBorrar.php
+    + vistaActualizar.php
 + seguridad/
     + install.php
     + config.php *.gitignore*

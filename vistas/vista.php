@@ -10,7 +10,7 @@
          */
         public function mostrar($nombreVista, $datos=null) {
             include("header.php");
-            include("$nombreVista.php", $datos);
+            include("$nombreVista.php");
             include("footer.php");
         }
     }
