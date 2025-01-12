@@ -18,9 +18,9 @@
                     echo "<td>$autor[Apellidos]</td>";
                     echo "<td>$autor[Pais]</td>";
 
-                    if(isset($_SESSION['usuario']) && ($_SESSION['rol']!="registrado")){
-                        echo "<td><a href='actualizarAutor.php?id=".$autor['id']."'>Actualizar</a></td>";
-                        echo "<td><a href='borrarAutor.php?id=".$autor['id']."'>Borrar</a></td>";
+                    if(Seguridad::secureRol(['bibliotecario'])){
+                        echo "<td><a href='?vista=actualizarAutor&id=".$autor['id']."'>Actualizar</a></td>";
+                        echo "<td><a href='?vista=borrarAutor&id=".$autor['id']."'>Borrar</a></td>";
                     }
 
                 echo "</tr>";
