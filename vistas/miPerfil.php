@@ -36,10 +36,11 @@ if(isset($_POST['Cambiar'])){
     <h1>Bienvenido a tu perfil</h1>
 
     <nav>
-        <section>
-            <!--Iimagen para el perfil -->
-        </section>
-    </nav>
+    <section>
+        <!-- Imagen para el perfil -->
+        <img src="<?php echo $usuario['avatar']; ?>" />
+    </section>
+</nav>
 
     <main>
         <!-- Actualizar los datos del usuario -->

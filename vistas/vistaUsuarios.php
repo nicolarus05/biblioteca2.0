@@ -33,6 +33,8 @@
                 echo "<td>$usuario[nombre]</td>";
                 //mostrar los apellidos del usuario
                 echo "<td>$usuario[apellidos]</td>";
+                //mostrar el avatar del usuario
+                echo "<td>$usuario[avatar]</td>";
                 //mostrar el rol del usuario
                 echo "<td>$usuario[rol]</td>";
 
