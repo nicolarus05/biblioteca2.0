@@ -12,8 +12,8 @@ class Autor extends Modelo {
     public function insertar($nombre, $apellidos ,$nacionalidad) {
         $sql = "insert INTO $this->tabla (Nombre, Apellidos , Pais) VALUES (:nombre, :apellidos, :nacionalidad)";
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':Apellidos', $apellidos, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
         try {
             $stmt->execute();
@@ -24,12 +24,13 @@ class Autor extends Modelo {
     }
 
     // Método para actualizar un autor
-    public function actualizar($apellidos, $nombre, $nacionalidad) {
-        $sql = "update $this->tabla SET nombre = :nombre, nacionalidad = :nacionalidad WHERE id = :id";
+    public function actualizar($id, $nombre, $apellidos, $nacionalidad) {
+        $sql = "update $this->tabla SET Nombre = :nombre, Apellidos = :apellidos, Pais = :nacionalidad WHERE id = :id";
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':Apellidos', $apellidos, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
         $stmt->bindParam(':nacionalidad', $nacionalidad, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         try {
             $stmt->execute();
         } catch (PDOException $e) {
