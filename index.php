@@ -39,6 +39,20 @@ if(isset($_POST['aLibro'])){
     header("Location:./?vista=vistaLibros");
 }
 
+//Recibir formulario de insercion de usuarios
+if(isset($_POST['iUsuario'])){
+    $usuario = new Usuario('usuarios');
+    $usuario->crear($_POST['nombre'],$_POST['apellido'],$_POST['usuario'],$_POST['contrasena'],$_POST['rol']);
+    header("Location:./?vista=vistaUsuarios");
+}
+
+//Recibir formulario de actualizacion de usuarios
+if(isset($_POST['aUsuario'])){
+    $usuarios = new Usuario('usuarios');
+    $usuarios->actualizar($_POST['nombre'],$_POST['apellidos'],$_POST['usuario'],$_POST['rol']);
+    header("Location:./?vista=vistaUsuarios");
+}
+
 if(isset($_GET['vista'])){
     $vista = $_GET['vista'];
 }
