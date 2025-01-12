@@ -48,11 +48,39 @@ if(!isset($vista)){
 }
 
 switch ($vista) {
-    case 'usuarios':
+    case 'vistaUsuarios':
         //qué hacer para mostrar los usuarios
         if(Seguridad::secureRol(['admin'])){
             $usuarios = new Usuario('usuarios');
             Vista::mostrar('vistaUsuarios',$usuarios->listar());
+        }
+        break;
+
+    case 'insertarUsuario':
+        //qué hacer para insertar los usuarios
+        if(Seguridad::secureRol(['admin'])){
+            $datos[0] = 'usuario';
+            $usuarios = new Usuario('usuarios');
+            array_push($datos,$usuarios->listar());
+        }
+        break;
+
+    case 'actualizarUsuario':
+        //qué hacer para actualizar usuarios
+        if(Seguridad::secureRol(['admin'])){
+            $usuarios = new Usuario('usuarios');
+            $datos[0] = 'usuario';
+            array_push($datos,$usuarios->get('id',$id));
+            Vista::mostrar('vistaActualizar',$datos);
+        }
+        break;
+
+    case 'borrarUsuario':
+        //qué hacer para eliminar usuarios
+        if(Seguridad::secureRol(['admin'])){
+            $usuarios = new Usuario('usuarios');
+            $usuarios->eliminar('id',$id);
+            header("Location:./?vista=vistaUsuarios");
         }
         break;
     case 'vistaLibros':
