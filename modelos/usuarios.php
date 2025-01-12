@@ -14,12 +14,11 @@ class Usuario extends Modelo
     //función para crear los usuarios
     public function crear($datos)
     {
-        $consulta = 'INSERT INTO ' . $this->tabla . ' (login, nombre, apellidos, avatar, salt, clave, rol) VALUES (:login, :nombre, :apellidos, :avatar, :salt, :clave, :rol)';
+        $consulta = 'INSERT INTO ' . $this->tabla . ' (login, nombre, apellidos, salt, clave, rol) VALUES (:login, :nombre, :apellidos, :salt, :clave, :rol)';
         $stmt = $this->conexion->prepare($consulta);
         $stmt->bindParam(':login', $datos['login']);
         $stmt->bindParam(':nombre', $datos['nombre']);
         $stmt->bindParam(':apellidos', $datos['apellidos']);
-        $stmt->bindParam(':avatar', $datos['avatar']);
         $salt = rand(-1000000, 1000000);
         $claveEncriptada = hash('sha256', $datos['clave'] . $salt);
         $stmt->bindParam(':salt', $salt);
@@ -31,12 +30,11 @@ class Usuario extends Modelo
     //función para actualizar los usuarios
     public function actualizar($login, $datos)
     {
-        $consulta = 'UPDATE ' . $this->tabla . ' SET login = :login, nombre = :nombre, apellidos = :apellidos, avatar = :avatar, clave = :clave WHERE login = :login';
+        $consulta = 'UPDATE ' . $this->tabla . ' SET login = :login, nombre = :nombre, apellidos = :apellidos, clave = :clave WHERE login = :login';
         $stmt = $this->conexion->prepare($consulta);
         $stmt->bindParam(':login', $datos['login']);
         $stmt->bindParam(':nombre', $datos['nombre']);
         $stmt->bindParam(':apellidos', $datos['apellidos']);
-        $stmt->bindParam(':avatar', $datos['avatar']);
         $stmt->bindParam(':clave', $datos['clave']);
         $stmt->bindParam(':login', $login);
         $stmt->execute();

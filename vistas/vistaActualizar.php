@@ -38,7 +38,38 @@
                 value='<?php echo $libro['numeroEjemplares']; ?>'>
                 <input type="submit" name="aLibro" value="Actualizar">
             </form>
-    <?php } //elseif tabla==usuario
+    <?php } elseif ($tabla=='usuario'){
+            $usuario = $datos[0]; 
+        ?>
+        <fieldset>
+        <legend>Actualizar usuario</legend>
+            <form action="" method="post">
+                <label for="nombre">Nombre</label><br>
+                <input type="text" name="nombre" id="nombre" value='<?php echo $usuario['nombre'];?>' required ><br>
+                <label for="ape">Apellidos</label><br>
+                <input type="text" name="apellidos" id="ape" value='<?php echo $usuario['apellidos'];?>' required><br>
+                <label for="user">Usuario</label><br>
+                <input type="text" name="usuario" id="user" value='<?php echo $usuario['login'];?>' required><br>
+                <label for="rol">Rol</label><br>
+                <select name="rol" id="rol">
+                    <?php if($usuario['rol']=='admin'){
+                        echo "<option value='admin' selected>Admin</option>";
+                        echo "<option value='bibliotecario'>Bibliotecario</option>";
+                        echo "<option value='registrado'>Registrado</option>";
+                    } elseif($usuario['rol']=='bibliotecario'){
+                        echo "<option value='admin'>Admin</option>";
+                        echo "<option value='bibliotecario' selected>Bibliotecario</option>";
+                        echo "<option value='registrado'>Registrado</option>";
+                    } else {
+                        echo "<option value='admin'>Admin</option>";
+                        echo "<option value='bibliotecario'>Bibliotecario</option>";
+                        echo "<option value='registrado' selected>Registrado</option>";
+                    } ?>
+                </select>
+                <input type="submit" name="aUsuario" value="Actualizar"><br>
+            </form>
+        </fieldset>
+        <?php }
         //elseif tabla==autor
     ?>
 </main>

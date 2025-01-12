@@ -24,16 +24,6 @@ if (isset($_POST['Cambiar'])) {
 ?>
 
 <main>
-    <h1>Bienvenido a tu perfil</h1>
-
-    <nav>
-        <section>
-            <!-- Imagen para el perfil -->
-            <img src="<?php echo $usuario['avatar']; ?>" />
-        </section>
-    </nav>
-
-    <main>
         <!-- Actualizar los datos del usuario -->
         <h2>Modificar mis datos</h2>
         <form action="" method="post">
@@ -67,4 +57,4 @@ if (isset($_POST['Cambiar'])) {
                 }
             }
         </script>
-    </main>
+</main>

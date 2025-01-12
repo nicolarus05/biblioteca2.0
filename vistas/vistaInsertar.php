@@ -45,5 +45,38 @@
                     <input type="submit" name="iAutor" value="Insertar">
                 </form>
             </fieldset>
-        <?php } ?>
+        <?php } elseif ($tabla=='usuario') {?>
+            <fieldset>
+            <legend>Formulario de Registro</legend>
+                <form action="" method="post" onsubmit="comprobarPass(this)">
+                    <label for="nombre">Nombre</label><br>
+                    <input type="text" name="nombre" id="nombre" required><br>
+                    <label for="ape">Apellidos</label><br>
+                    <input type="text" name="apellido" id="ape" required><br>
+                    <label for="user">Usuario</label><br>
+                    <input type="text" name="usuario" id="user" required><br>
+                    <label for="pass">Contraseña</label><br>
+                    <input type="password" name="contrasena" id="pass" required><br>
+                    <label for="repass">Repite Contraseña</label><br>
+                    <input type="password" name="contrasena" id="repass" required><br>
+                    <label for="rol">Rol</label><br>
+                    <select name="rol" id="rol">
+                        <option value="admin">Admin</option>
+                        <option value="bibliotecario">Bibliotecario</option>
+                        <option value="registrado">Registrado</option>
+                    </select>
+                    <input type="submit" name="iUsuario" value="Insertar"><br>
+                </form>
+            </fieldset>
+            <script>
+                function comprobarPass(form){
+                    if(this.pass.value!=this.repass.value){
+                        alert("Las contraseñas no coinciden");
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            </script>
+            <?php } ?>
 </main>

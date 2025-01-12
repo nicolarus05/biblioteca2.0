@@ -56,6 +56,12 @@ switch ($vista) {
         }
         break;
 
+    case 'miPerfil':
+        //qué hacer para mostrar el perfil del usuario
+        $usuarios = new Usuario('usuarios');
+        Vista::mostrar('miPerfil',$usuarios->get('login',$_SESSION['usuario']));
+        break;
+
     case 'insertarUsuario':
         //qué hacer para insertar los usuarios
         if(Seguridad::secureRol(['admin'])){

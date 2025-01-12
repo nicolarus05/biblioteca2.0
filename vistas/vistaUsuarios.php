@@ -6,7 +6,6 @@
             <th>Login</th>
             <th>Nombre</th>
             <th>Apellidos</th>
-            <th>Avatar</th>
             <th>Rol</th>
             <th>Acciones</th>
         </tr>
@@ -24,14 +23,12 @@
                 echo "<td>$usuario[nombre]</td>";
                 //mostrar los apellidos del usuario
                 echo "<td>$usuario[apellidos]</td>";
-                //mostrar el avatar del usuario
-                echo "<td>$usuario[avatar]</td>";
                 //mostrar el rol del usuario
                 echo "<td>$usuario[rol]</td>";
 
                 //mostrar las acciones (si es un usuario administrador)
                 if(isset($_SESSION['logged']) && $_SESSION['logged']="administrador"){
-                    echo "<td><a href='?vista=modificarUsuario&id=".$usuario['login']."'>Modificar</a></td>";
+                    echo "<td><a href='?vista=actualizarUsuario&id=".$usuario['login']."'>Modificar</a></td>";
                     echo "<td><a href='?vista=borrarUsuario&id=".$usuario['login']."'>Borrar</a></td>";
                 }
                 
