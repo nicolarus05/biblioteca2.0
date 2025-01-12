@@ -8,12 +8,12 @@ if (!isset($_SESSION['registrado']) || !isset($_SESSION['administrador']) || !is
 }
 
 //Comprobar que se quiere cambiar la contraseña
-if(isset($_POST['Cambiar'])){
-    $hash = $_POST['antigua'].$datos['salt'];
+if (isset($_POST['Cambiar'])) {
+    $hash = $_POST['antigua'] . $datos['salt'];
     $nueva = $_POST['pass'];
 
     //problemas
-    if(password_verify($hash,$datos['password'])){
+    if (password_verify($hash, $datos['password'])) {
         $datos->modificarPwd($nueva);
         $success = "Contraseña actualizada correctamente.";
     } else {
@@ -23,24 +23,15 @@ if(isset($_POST['Cambiar'])){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi perfil</title>
-</head>
-
-<body>
+<main>
     <h1>Bienvenido a tu perfil</h1>
 
     <nav>
-    <section>
-        <!-- Imagen para el perfil -->
-        <img src="<?php echo $usuario['avatar']; ?>" />
-    </section>
-</nav>
+        <section>
+            <!-- Imagen para el perfil -->
+            <img src="<?php echo $usuario['avatar']; ?>" />
+        </section>
+    </nav>
 
     <main>
         <!-- Actualizar los datos del usuario -->
@@ -65,19 +56,15 @@ if(isset($_POST['Cambiar'])){
             <input type="password" name="repe" id="repe" required><br>
             <input type="submit" name="Cambiar" value="Cambiar">
         </form>
-    </main>
-
-    <!-- Script para comprobar que la nueva contraseña coincide en los 2 campos -->
-    <script>
-        function comprobarPass(form) {
-            if (this.nueva.value != this.repe.value) {
-                alert("Las contraseñas no coinciden");
-                return false;
-            } else {
-                return true;
+        <!-- Script para comprobar que la nueva contraseña coincide en los 2 campos -->
+        <script>
+            function comprobarPass(form) {
+                if (this.nueva.value != this.repe.value) {
+                    alert("Las contraseñas no coinciden");
+                    return false;
+                } else {
+                    return true;
+                }
             }
-        }
-    </script>
-</body>
-
-</html>
+        </script>
+    </main>

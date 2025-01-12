@@ -20,8 +20,10 @@ class Usuario extends Modelo
         $stmt->bindParam(':nombre', $datos['nombre']);
         $stmt->bindParam(':apellidos', $datos['apellidos']);
         $stmt->bindParam(':avatar', $datos['avatar']);
-        $stmt->bindParam(':salt', $datos['salt']);
-        $stmt->bindParam(':clave', $datos['clave']);
+        $salt = rand(-1000000, 1000000);
+        $claveEncriptada = hash('sha256', $datos['clave'] . $salt);
+        $stmt->bindParam(':salt', $salt);
+        $stmt->bindParam(':clave', $claveEncriptada);
         $stmt->bindParam(':rol', $datos['rol']);
         $stmt->execute();
     }

@@ -67,7 +67,8 @@ switch ($vista) {
 
     case 'actualizarUsuario':
         //qué hacer para actualizar usuarios
-        if(Seguridad::secureRol(['admin'])){
+        if($segura->isLogged()){
+            $rol = $segura->getRol();
             $usuarios = new Usuario('usuarios');
             $datos[0] = 'usuario';
             array_push($datos,$usuarios->get('id',$id));
@@ -77,7 +78,8 @@ switch ($vista) {
 
     case 'borrarUsuario':
         //qué hacer para eliminar usuarios
-        if(Seguridad::secureRol(['admin'])){
+        if($segura->isLogged()){
+            $datos = $segura->getRol();
             $usuarios = new Usuario('usuarios');
             $usuarios->eliminar('id',$id);
             header("Location:./?vista=vistaUsuarios");
