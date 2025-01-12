@@ -50,6 +50,10 @@ if(!isset($vista)){
 switch ($vista) {
     case 'usuarios':
         //qué hacer para mostrar los usuarios
+        if(Seguridad::secureRol(['admin'])){
+            $usuarios = new Usuario('usuarios');
+            Vista::mostrar('vistaUsuarios',$usuarios->listar());
+        }
         break;
     case 'vistaLibros':
         //qué hacer para mostrar los libros
