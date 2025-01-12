@@ -12,7 +12,7 @@
 
         <!-- Código php-->
          <?php 
-            $usuarios = $datos['usuarios'];
+            $usuarios = $datos;
 
             //bucle
             foreach ($usuarios as $usuario) {
@@ -27,7 +27,7 @@
                 echo "<td>$usuario[rol]</td>";
 
                 //mostrar las acciones (si es un usuario administrador)
-                if(isset($_SESSION['logged']) && $_SESSION['logged']="administrador"){
+                if(Seguridad::secureRol(['admin'])){
                     echo "<td><a href='?vista=actualizarUsuario&id=".$usuario['login']."'>Modificar</a></td>";
                     echo "<td><a href='?vista=borrarUsuario&id=".$usuario['login']."'>Borrar</a></td>";
                 }

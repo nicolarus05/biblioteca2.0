@@ -33,6 +33,13 @@ if(isset($_POST['iAutor'])){
 }
 
 //Recibir formulario de actualizacion de libros
+if(isset($_POST['iLibro'])){
+    $libros = new Libro('libros');
+    $libros->insertar($_POST['titulo'],$_POST['genero'],$_POST['autor'],$_POST['numeroPaginas'],$_POST['numeroEjemplares']);
+    header("Location:./?vista=vistaLibros");
+}
+
+//Recibir formulario de actualizacion de libros
 if(isset($_POST['aLibro'])){
     $libros = new Libro('libros');
     $libros->actualizar($_POST['id'],$_POST['titulo'],$_POST['genero'],$_POST['autor'],$_POST['numeroPaginas'],$_POST['numeroEjemplares']);
@@ -53,8 +60,14 @@ if(isset($_POST['aUsuario'])){
     header("Location:./?vista=vistaUsuarios");
 }
 
+//Recibir vista por url sucia
 if(isset($_GET['vista'])){
     $vista = $_GET['vista'];
+}
+
+//Recibir id por url sucia
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
 }
 
 if(!isset($vista)){
