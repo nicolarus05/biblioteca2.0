@@ -31,8 +31,8 @@
 
                 //mostrar las acciones (si es un usuario administrador)
                 if(isset($_SESSION['logged']) && $_SESSION['logged']="administrador"){
-                    echo "<td><a href='./modelos/usuarios.php?id=".$usuario['login']."'>Modificar</a></td>";
-                    echo "<td><a href='./modelos/modelo.php?id=".$usuario['login']."'>Borrar</a></td>";
+                    echo "<td><a href='?vista=modificarUsuario&id=".$usuario['login']."'>Modificar</a></td>";
+                    echo "<td><a href='?vista=borrarUsuario&id=".$usuario['login']."'>Borrar</a></td>";
                 }
                 
                 echo "<tr/>";
