@@ -32,6 +32,13 @@ if(isset($_POST['iAutor'])){
     header("Location:./?vista=vistaAutores");
 }
 
+//Recibir formulario de actualizacion de autores
+if(isset($_POST['aAutor'])){
+    $autores = new Autor('autores');
+    $autores->actualizar($_POST['id'],$_POST['nombre'],$_POST['apellidos'],$_POST['pais']);
+    header("Location:./?vista=vistaAutores");
+}
+
 //Recibir formulario de actualizacion de libros
 if(isset($_POST['iLibro'])){
     $libros = new Libro('libros');
@@ -149,6 +156,33 @@ switch ($vista) {
             $libros = new Libro('libros');
             $libros->eliminar('id',$id);
             header("Location:./?vista=vistaLibros");
+        }
+        break;
+
+    case 'insertarAutor':
+        //qué hacer para insertar autores
+        if(Seguridad::secureRol(['bibliotecario'])){
+            $datos[0] = 'autor';
+            Vista::mostrar('vistaInsertar',$datos);
+        }
+        break;
+
+    case 'borrarAutor':
+        //qué hacer para borrar autores
+        if(Seguridad::secureRol(['bibliotecario'])){
+            $autores = new Autor('autores');
+            $autores->eliminar('id',$id);
+            header("Location:./?vista=vistaAutores");
+        }
+        break;
+
+    case 'actualizarAutor':
+        //qué hacer para actualizar autores
+        if(Seguridad::secureRol(['bibliotecario'])){
+            $autores = new Autor('autores');
+            $datos[0] = 'autor';
+            array_push($datos,$autores->get('id',$id));
+            Vista::mostrar('vistaActualizar',$datos);
         }
         break;
     default:
