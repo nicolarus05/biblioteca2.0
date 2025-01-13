@@ -102,6 +102,7 @@ switch ($vista) {
             $datos[0] = 'usuario';
             $usuarios = new Usuario('usuarios');
             array_push($datos,$usuarios->listar());
+            Vista::mostrar('vistaInsertar',$datos);
         }
         break;
 
@@ -183,6 +184,13 @@ switch ($vista) {
             $datos[0] = 'autor';
             array_push($datos,$autores->get('id',$id));
             Vista::mostrar('vistaActualizar',$datos);
+        }
+        break;
+
+    case 'cerrarSesion':
+        if($segura->isLogged()){
+            $segura->logout();
+            Vista::mostrar('vistaLogin');
         }
         break;
     default:
