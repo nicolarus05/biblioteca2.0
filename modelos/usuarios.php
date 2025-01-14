@@ -12,32 +12,31 @@ class Usuario extends Modelo
     }
 
     //función para crear los usuarios
-    public function crear($datos)
+    public function crear($nombre,$apellidos,$login,$password,$rol = "registrado")
     {
-        $consulta = 'INSERT INTO ' . $this->tabla . ' (login, nombre, apellidos, salt, clave, rol) VALUES (:login, :nombre, :apellidos, :salt, :clave, :rol)';
-        $stmt = $this->conexion->prepare($consulta);
-        $stmt->bindParam(':login', $datos['login']);
-        $stmt->bindParam(':nombre', $datos['nombre']);
-        $stmt->bindParam(':apellidos', $datos['apellidos']);
-        $salt = rand(-1000000, 1000000);
-        $claveEncriptada = hash('sha256', $datos['clave'] . $salt);
-        $stmt->bindParam(':salt', $salt);
-        $stmt->bindParam(':clave', $claveEncriptada);
-        $stmt->bindParam(':rol', $datos['rol']);
-        $stmt->execute();
+        $salt=random_int(10000000,99999999);
+        $password = password_hash($password.$salt,PASSWORD_DEFAULT);
+        
+        try{
+            $stmt = $this->conexion->prepare("INSERT INTO usuarios(nombre,apellidos,login,password,salt,rol)
+                VALUES (?,?,?,?,?,?);");
+            $stmt->execute([$nombre,$apellidos,$login,$password,$salt,$rol]);
+        } catch (Exception $e){
+            echo "<p class='error'>Error al insertar $login. $e</p>";
+        }
     }
 
     //función para actualizar los usuarios
-    public function actualizar($login, $datos)
+    public function actualizar($nombre,$apellidos,$login,$rol)
     {
-        $consulta = 'UPDATE ' . $this->tabla . ' SET login = :login, nombre = :nombre, apellidos = :apellidos, clave = :clave WHERE login = :login';
-        $stmt = $this->conexion->prepare($consulta);
-        $stmt->bindParam(':login', $datos['login']);
-        $stmt->bindParam(':nombre', $datos['nombre']);
-        $stmt->bindParam(':apellidos', $datos['apellidos']);
-        $stmt->bindParam(':clave', $datos['clave']);
-        $stmt->bindParam(':login', $login);
-        $stmt->execute();
+        $sql = "UPDATE `usuarios` SET `nombre`=?, `apellidos`=?, `rol`=? WHERE `login` = ?;";
+        $stmt = $this->conexion->prepare($sql);
+
+        try{
+            $stmt->execute([$nombre,$apellidos,$rol,$login]);
+        }catch(PDOException $e){
+            echo "Error al actualizar el usuario: " . $e->getMessage();
+        }
     }
 }
 ?>
