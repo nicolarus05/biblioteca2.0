@@ -187,6 +187,12 @@ switch ($vista) {
         }
         break;
 
+    case 'vistaAutores':
+        //qué hacer para mostrar los autores
+        $autores = new Autor('autores');
+        Vista::mostrar('vistaAutores',$autores->listar());
+        break;
+
     case 'cerrarSesion':
         if($segura->isLogged()){
             $segura->logout();
