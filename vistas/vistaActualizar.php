@@ -69,7 +69,20 @@
                 <input type="submit" name="aUsuario" value="Actualizar"><br>
             </form>
         </fieldset>
-        <?php }
-        //elseif tabla==autor
-    ?>
+        <?php }elseif ($tabla=='autor'){
+        $autor = $datos[0];?>
+        <fieldset>
+        <legend>Actualizar autor</legend>
+            <form action="" method="post">
+                <input type="hidden" name="id" value='<?php echo $autor['id'];?>'>
+                <label for="nombre">Nombre</label><br>
+                <input type="text" name="nombre" id="nombre" value='<?php echo $autor['Nombre'];?>' required ><br>
+                <label for="ape">Apellidos</label><br>
+                <input type="text" name="apellidos" id="ape" value='<?php echo $autor['Apellidos'];?>' required><br>
+                <label for="pais">Pais</label><br>
+                <input type="text" name="pais" id="pais" value='<?php echo $autor['Pais'];?>' required><br>
+                <input type="submit" name="aAutor" value="Actualizar"><br>
+            </form>
+        </fieldset>
+    <?php }?>
 </main>

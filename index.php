@@ -185,7 +185,7 @@ switch ($vista) {
         if(Seguridad::secureRol(['bibliotecario'])){
             $autores = new Autor('autores');
             $datos[0] = 'autor';
-            array_push($datos,$autores->get('id',$id));
+            array_push($datos,$autores->get('idAutor',$id));
             Vista::mostrar('vistaActualizar',$datos);
         }
         break;
