@@ -1,12 +1,4 @@
 <?php
-session_start();
-
-//Comprobar que existe una sesión
-if (!isset($_SESSION['registrado']) || !isset($_SESSION['administrador']) || !isset($_SESSION['bibliotecaro'])) {
-    header('Location: ./vistaLogin.php');
-    exit();
-}
-
 //Comprobar que se quiere cambiar la contraseña
 if (isset($_POST['Cambiar'])) {
     $hash = $_POST['antigua'] . $datos['salt'];
