@@ -1,9 +1,10 @@
 <main>
     <?php
         $tabla = array_shift($datos);
-        $libro = $datos[0];
-        $autores = $datos[1];
-        if($tabla=='libro'){ ?>
+        if($tabla=='libro'){ 
+            $libro = $datos[0];
+            $autores = $datos[1];
+        ?>
             <form action="" method="post">
                 <input type="hidden" name="id" value='<?php echo $libro['id'];?>'>
                 <label for="titulo">Título</label>
@@ -70,11 +71,12 @@
             </form>
         </fieldset>
         <?php }elseif ($tabla=='autor'){
-        $autor = $datos[0];?>
+        $autor = $datos[0];
+        print_r($datos);?>
         <fieldset>
         <legend>Actualizar autor</legend>
             <form action="" method="post">
-                <input type="hidden" name="id" value='<?php echo $autor['id'];?>'>
+                <input type="hidden" name="id" value='<?php echo $autor['idAutor'];?>'>
                 <label for="nombre">Nombre</label><br>
                 <input type="text" name="nombre" id="nombre" value='<?php echo $autor['Nombre'];?>' required ><br>
                 <label for="ape">Apellidos</label><br>

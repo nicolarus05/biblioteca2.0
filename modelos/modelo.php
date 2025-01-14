@@ -34,7 +34,7 @@ class Modelo
         $stmt = $this->conexion->prepare($consulta);
         $stmt->bindParam(':valor', $valor);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     //función para eliminar algo de una tabla

@@ -25,7 +25,7 @@ class Autor extends Modelo {
 
     // Método para actualizar un autor
     public function actualizar($id, $nombre, $apellidos, $nacionalidad) {
-        $sql = "update $this->tabla SET Nombre = :nombre, Apellidos = :apellidos, Pais = :nacionalidad WHERE id = :id";
+        $sql = "update $this->tabla SET Nombre = :nombre, Apellidos = :apellidos, Pais = :nacionalidad WHERE idAutor = :id";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $stmt->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
