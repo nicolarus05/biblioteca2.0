@@ -16,7 +16,7 @@ if (isset($_POST['Cambiar'])) {
 ?>
 
 <main>
-        <!-- Actualizar los datos del usuario -->
+        <!-- Actualizar los datos del usuario, algo no funciona -->
         <h2>Modificar mis datos</h2>
         <form action="" method="post">
             <input type="hidden" name="login" value='<?php echo $datos['login']; ?>'>
