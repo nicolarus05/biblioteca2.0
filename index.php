@@ -112,11 +112,11 @@ switch ($vista) {
 
     case 'actualizarUsuario':
         //qué hacer para actualizar usuarios
-        if($segura->isLogged()){
+        if(Seguridad::secureRol(['admin'])){
             $rol = $segura->getRol();
             $usuarios = new Usuario('usuarios');
             $datos[0] = 'usuario';
-            array_push($datos,$usuarios->get('id',$id));
+            array_push($datos,$usuarios->get('login',$id));
             Vista::mostrar('vistaActualizar',$datos);
         }
         break;
