@@ -19,8 +19,8 @@
                     echo "<td>$autor[Pais]</td>";
 
                     if(Seguridad::secureRol(['bibliotecario'])){
-                        echo "<td><a href='?vista=actualizarAutor&id=".$autor['id']."'>Actualizar</a></td>";
-                        echo "<td><a href='?vista=borrarAutor&id=".$autor['id']."'>Borrar</a></td>";
+                        echo "<td><a href='?vista=actualizarAutor&id=".$autor['idAutor']."'>Actualizar</a></td>";
+                        echo "<td><a href='?vista=borrarAutor&id=".$autor['idAutor']."'>Borrar</a></td>";
                     }
 
                 echo "</tr>";

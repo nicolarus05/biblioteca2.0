@@ -175,7 +175,7 @@ switch ($vista) {
         //qué hacer para borrar autores
         if(Seguridad::secureRol(['bibliotecario'])){
             $autores = new Autor('autores');
-            $autores->eliminar('id',$id);
+            $autores->eliminar('idAutor',$id);
             header("Location:./?vista=vistaAutores");
         }
         break;
