@@ -38,5 +38,34 @@ class Usuario extends Modelo
             echo "Error al actualizar el usuario: " . $e->getMessage();
         }
     }
+
+    //funcion para actualizar datos del perfil
+    public function actualizarPerfil($nombre,$apellidos,$login)
+    {
+        $sql = "UPDATE `usuarios` SET `nombre`=?, `apellidos`=? WHERE `login` = ?;";
+        $stmt = $this->conexion->prepare($sql);
+
+        try{
+            $stmt->execute([$nombre,$apellidos,$login]);
+        }catch(PDOException $e){
+            echo "Error al actualizar el usuario: " . $e->getMessage();
+        }
+    }
+
+    //funcion para actualizar contraseña desde el perfil
+    public function actualizarContrasena($login,$nueva)
+    {
+        $salt=random_int(10000000,99999999);
+        $password = password_hash($nueva.$salt,PASSWORD_DEFAULT);
+
+        $sql = "UPDATE `usuarios` SET `password`=?, `salt` = ? WHERE `login` = ?;";
+        $stmt = $this->conexion->prepare($sql);
+
+        try{
+            $stmt->execute([$password,$salt,$login]);
+        }catch(PDOException $e){
+            echo "Error al actualizar el usuario: " . $e->getMessage();
+        }
+    }
 }
 ?>

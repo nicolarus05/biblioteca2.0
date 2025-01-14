@@ -12,7 +12,7 @@
                     <?php
                         foreach ($datos as $index) {
                             foreach ($index as $autor) {
-                                echo "<option value='".$autor['id']."'>".$autor['Nombre']." ".$autor['Apellidos']."</option>";
+                                echo "<option value='".$autor['idAutor']."'>".$autor['Nombre']." ".$autor['Apellidos']."</option>";
                             }
                         }
                     ?>

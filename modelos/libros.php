@@ -19,7 +19,7 @@ require_once 'modelo.php';
          * @param int $nEjemplares Número de ejemplares disponibles del libro.
          */
         public function insertar($titulo, $genero,$autor,$nPaginas,$nEjemplares){
-            $sql = "INSERT INTO $this->tabla (titulo, genero, idAutor, numPaginas, nEjemplaresDisponibles) VALUES (:titulo, :genero, :autor, :nPaginas, :nEjemplares)";    
+            $sql = "INSERT INTO $this->tabla (titulo, genero, idAutor, numeroPaginas, numeroEjemplares) VALUES (:titulo, :genero, :autor, :nPaginas, :nEjemplares)";    
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':titulo', $titulo);  
             $stmt->bindParam(':genero', $genero);
@@ -44,7 +44,7 @@ require_once 'modelo.php';
          * @param int $nEjemplares Número de ejemplares disponibles del libro.
          */
         public function actualizar($id, $titulo, $genero,$autor,$nPaginas,$nEjemplares){
-            $sql = "UPDATE  $this->tabla SET titulo = :titulo, genero = :genero, idAutor = :autor, numPaginas = :nPaginas, nEjemplaresDisponibles = :nEjemplares WHERE id = :id";
+            $sql = "UPDATE  $this->tabla SET titulo = :titulo, genero = :genero, idAutor = :autor, numeroPaginas = :nPaginas, numeroEjemplares = :nEjemplares WHERE idLibro = :id";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':titulo', $titulo);
             $stmt->bindParam(':genero', $genero);

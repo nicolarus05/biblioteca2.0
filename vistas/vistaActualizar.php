@@ -6,7 +6,7 @@
             $autores = $datos[1];
         ?>
             <form action="" method="post">
-                <input type="hidden" name="id" value='<?php echo $libro['id'];?>'>
+                <input type="hidden" name="id" value='<?php echo $libro['idLibro'];?>'>
                 <label for="titulo">Título</label>
                 <input type="text" name="titulo" id="titulo" 
                 value='<?php echo $libro['titulo'];?>'>
@@ -14,10 +14,10 @@
                 <select id="autor" name="autor" style="display: inline;">
                     <?php
                         foreach ($autores as $autor) {
-                            if($autor['id']==$libro['idAutor']){
-                                echo "<option value='".$autor['id']."' selected>".$autor['Nombre']." ".$autor['Apellidos']."</option>";
+                            if($autor['idAutor']==$libro['idAutor']){
+                                echo "<option value='".$autor['idAutor']."' selected>".$autor['Nombre']." ".$autor['Apellidos']."</option>";
                             } else {
-                                echo "<option value='".$autor['id']."'>".$autor['Nombre']." ".$autor['Apellidos']."</option>";
+                                echo "<option value='".$autor['idAutor']."'>".$autor['Nombre']." ".$autor['Apellidos']."</option>";
                             }
                         }
                     ?>
@@ -71,8 +71,7 @@
             </form>
         </fieldset>
         <?php }elseif ($tabla=='autor'){
-        $autor = $datos[0];
-        print_r($datos);?>
+        $autor = $datos[0];?>
         <fieldset>
         <legend>Actualizar autor</legend>
             <form action="" method="post">
