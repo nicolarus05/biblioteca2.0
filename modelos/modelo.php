@@ -40,9 +40,20 @@ class Modelo
     //función para eliminar algo de una tabla
     public function eliminar($columna, $valor)
     {
-        $consulta = 'DELETE FROM ' . $this->tabla . ' WHERE ' . $columna . ' = :valor';
-        $stmt = $this->conexion->prepare($consulta);
-        $stmt->bindParam(':valor', $valor);
-        $stmt->execute();
+        try {
+            $consulta = 'DELETE FROM ' . $this->tabla . ' WHERE ' . $columna . ' = :valor';
+            $stmt = $this->conexion->prepare($consulta);
+            $stmt->bindParam(':valor', $valor);
+            $stmt->execute();
+    
+            // Verifica si se eliminó alguna fila
+            if ($stmt->rowCount() > 0) {
+                echo "Recurso eliminado correctamente.";
+            } else {
+                echo "No se encontró el recurso para eliminar.";
+            }
+        } catch (PDOException $e) {
+            echo "Error al recurso usuario: " . $e->getMessage();
+        }
     }
 }

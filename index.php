@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 if(!file_exists("seguridad/config.php")){
     header("Location:./seguridad/install.php");
@@ -77,6 +79,8 @@ if(isset($_GET['id'])){
     $id = $_GET['id'];
 }
 
+$login = isset($_GET['login']) ? $_GET['login'] : null;
+
 if(!isset($vista)){
     $vista = null;
 }
@@ -119,10 +123,9 @@ switch ($vista) {
 
     case 'borrarUsuario':
         //qué hacer para eliminar usuarios
-        if($segura->isLogged()){
-            $datos = $segura->getRol();
+        if(Seguridad::secureRol(['admin'])){
             $usuarios = new Usuario('usuarios');
-            $usuarios->eliminar('id',$id);
+            $usuarios->eliminar('login',$id);
             header("Location:./?vista=vistaUsuarios");
         }
         break;
